@@ -43,7 +43,7 @@ Do not install this POC or tSQLt into a production database.
 
 ## Initial database setup
 
-Create a dedicated database for the POC, install tSQLt in it, and then execute the repository scripts required by the scenario.
+For a clean environment, follow [`docs/SETUP.md`](docs/SETUP.md). It covers database creation, CLR configuration, tSQLt installation, the exact repository script execution order, test creation, and final validation of the 13-test suite.
 
 The current POC uses the scripts under `queries/` to create the example tables, stored procedures, test classes, setup procedures, and test procedures.
 
