@@ -1,0 +1,13 @@
+IF OBJECT_ID('ImportTests.SetUp', 'P') IS NOT NULL
+BEGIN
+    DROP PROCEDURE ImportTests.SetUp;
+END;
+GO
+
+CREATE PROCEDURE ImportTests.SetUp
+AS
+BEGIN
+    EXEC tSQLt.FakeTable 'dbo', 'STAGING_TRANSACTIONS';
+    EXEC tSQLt.FakeTable 'dbo', 'RAW_TRANSACTIONS';
+END;
+GO
