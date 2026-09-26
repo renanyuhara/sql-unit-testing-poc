@@ -4,6 +4,31 @@ This guide explains how to run the existing test suite and how to add isolated u
 
 The intended audience is a developer who is new to this repository and may also be new to tSQLt.
 
+## Table of contents
+
+- [Core principle](#core-principle)
+- [How many files do I need?](#how-many-files-do-i-need)
+- [Running existing tests](#running-existing-tests)
+- [Adding a test to an existing test class](#adding-a-test-to-an-existing-test-class)
+  - [1. Read the stored procedure](#1-read-the-stored-procedure)
+  - [2. Check the existing SetUp](#2-check-the-existing-setup)
+  - [3. Create one test file](#3-create-one-test-file)
+  - [4. Make the test script re-runnable](#4-make-the-test-script-re-runnable)
+  - [5. Arrange only the minimum data](#5-arrange-only-the-minimum-data)
+  - [6. Act by executing the real procedure](#6-act-by-executing-the-real-procedure)
+  - [7. Assert the expected behavior](#7-assert-the-expected-behavior)
+  - [8. Run the new test alone](#8-run-the-new-test-alone)
+  - [9. Run the complete test class](#9-run-the-complete-test-class)
+  - [10. Run the complete suite before committing](#10-run-the-complete-suite-before-committing)
+- [Complete test template](#complete-test-template)
+- [Creating a new test class](#creating-a-new-test-class)
+  - [1. Create the class once](#1-create-the-class-once)
+  - [2. Create SetUp.sql](#2-create-setupsql)
+- [Why FakeTable is important](#why-faketable-is-important)
+- [Testing multi-stage pipelines](#testing-multi-stage-pipelines)
+- [Checklist for a new test](#checklist-for-a-new-test)
+- [Common mistakes](#common-mistakes)
+
 ## Core principle
 
 The test adapts to the stored procedure. The stored procedure should not be changed only to make it testable.
