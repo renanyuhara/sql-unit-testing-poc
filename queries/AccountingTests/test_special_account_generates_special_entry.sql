@@ -11,10 +11,6 @@ CREATE PROCEDURE AccountingTests.[test special account generates special entry]
 AS
 BEGIN
     -- Arrange
-    EXEC tSQLt.FakeTable 'dbo', 'RAW_TRANSACTIONS';
-    EXEC tSQLt.FakeTable 'dbo', 'ACCOUNTS';
-    EXEC tSQLt.FakeTable 'dbo', 'ACCOUNTING_ENTRIES';
-
     INSERT INTO dbo.ACCOUNTS
     (
         AccountNumber,

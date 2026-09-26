@@ -1,4 +1,13 @@
-CREATE OR ALTER PROCEDURE dbo.sp_ProcessAccounting
+USE AccountingTestingPOC;
+GO
+
+IF OBJECT_ID('dbo.sp_ProcessAccounting', 'P') IS NOT NULL
+BEGIN
+    DROP PROCEDURE dbo.sp_ProcessAccounting;
+END;
+GO
+
+CREATE PROCEDURE dbo.sp_ProcessAccounting
     @AccountingDate DATE
 AS
 BEGIN
@@ -20,25 +29,18 @@ BEGIN
         rt.AccountingDate,
         rt.AccountNumber,
         rt.Amount,
-
         CASE
             WHEN a.AccountNumber IS NULL
                 THEN 'UNCLASSIFIED'
-
             WHEN a.IsActive = 0
                 THEN 'INACTIVE_ACCOUNT'
-
             WHEN a.AccountType = 'SPECIAL'
                 THEN 'SPECIAL_ENTRY'
-
             ELSE 'STANDARD_ENTRY'
         END
-
     FROM dbo.RAW_TRANSACTIONS rt
-
     LEFT JOIN dbo.ACCOUNTS a
         ON a.AccountNumber = rt.AccountNumber
-
     WHERE rt.AccountingDate = @AccountingDate;
 END;
 GO
