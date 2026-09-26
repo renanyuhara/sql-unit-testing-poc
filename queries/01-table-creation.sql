@@ -1,0 +1,41 @@
+USE AccountingTestingPOC;
+GO
+
+CREATE TABLE dbo.RAW_TRANSACTIONS
+(
+    TransactionId BIGINT NOT NULL,
+    AccountingDate DATE NOT NULL,
+    AccountNumber VARCHAR(20) NOT NULL,
+    Amount DECIMAL(18, 2) NOT NULL,
+    Description VARCHAR(200) NULL,
+
+    CONSTRAINT PK_RAW_TRANSACTIONS
+        PRIMARY KEY (TransactionId)
+);
+GO
+
+
+CREATE TABLE dbo.ACCOUNTS
+(
+    AccountNumber VARCHAR(20) NOT NULL,
+    AccountType VARCHAR(20) NOT NULL,
+    IsActive BIT NOT NULL,
+
+    CONSTRAINT PK_ACCOUNTS
+        PRIMARY KEY (AccountNumber)
+);
+GO
+
+
+CREATE TABLE dbo.ACCOUNTING_ENTRIES
+(
+    TransactionId BIGINT NOT NULL,
+    AccountingDate DATE NOT NULL,
+    AccountNumber VARCHAR(20) NOT NULL,
+    Amount DECIMAL(18, 2) NOT NULL,
+    AccountingType VARCHAR(30) NOT NULL,
+
+    CONSTRAINT PK_ACCOUNTING_ENTRIES
+        PRIMARY KEY (TransactionId)
+);
+GO
